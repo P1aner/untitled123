@@ -6,7 +6,8 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-
+<bean class="quoter.InjectRandomIntBeanPostProcessor"/>
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
     <bean class="quoter.TerminatorQuoter"
           id="terminatorQuoter" >
         <property name ="message" value="I'll be back"/>

@@ -1,16 +1,30 @@
 package quoter;
 
-public class TerminatorQuoter implements Quoter{
-  @InjectRandomInt(min =2,max =7)
+import javax.annotation.PostConstruct;
+@Profiling
+public class TerminatorQuoter implements Quoter {
+    @InjectRandomInt(min = 2, max = 7)
     private int repeat;
-private String message;
+    private String message;
 
     public void setMessage(String message) {
         this.message = message;
     }
 
+    @PostConstruct
+    public  void init(){
+        System.out.println("phase2");
+        System.out.println(repeat);
+}
+
+    public TerminatorQuoter() {
+        System.out.println("phase1");
+    }
+
     @Override
     public void sayQuote() {
-        System.out.println("Message ="+ message);
+        for (int i = 0; i < repeat; i++) {
+            System.out.println("Message =" + message);
+        }
     }
 }
