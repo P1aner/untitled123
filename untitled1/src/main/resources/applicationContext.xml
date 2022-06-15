@@ -7,6 +7,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
     <context:annotation-config/>
+    <bean class="quoter.DeprecationHandlerFactoryPostProcessor"/>
     <bean class="quoter.PostProxyInvokerContextListener"/>
     <bean class="quoter.ProfilingHandlerBeanPostProcessor"/>
     <bean class="quoter.InjectRandomIntBeanPostProcessor"/>
