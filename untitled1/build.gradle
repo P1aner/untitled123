@@ -11,6 +11,8 @@ repositories {
 
 dependencies {
 
+    implementation 'org.json:json:20220320'
+    implementation 'io.thorntail:javafx:2.7.0.Final'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
 // https://mvnrepository.com/artifact/org.springframework/spring-core

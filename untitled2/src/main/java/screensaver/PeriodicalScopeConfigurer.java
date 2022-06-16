@@ -1,8 +1,7 @@
 package screensaver;
 
 
-
-import org.apache.commons.lang3.tuple.Pair;
+import javafx.util.Pair;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.Scope;
 
