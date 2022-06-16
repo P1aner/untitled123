@@ -8,6 +8,10 @@ public class TerminatorQuoter implements Quoter {
     private int repeat;
     private String message;
 
+    public void setRepeat(int repeat) {
+        this.repeat = repeat;
+    }
+
     public void setMessage(String message) {
         this.message = message;
     }
