@@ -22,11 +22,11 @@ public class PeriodicalScopeConfigurer implements Scope {
             int secondsSinceLastRequest = now().getSecond() - pair.getKey().getSecond();
             if (secondsSinceLastRequest > 5) {
                 map.put(name, new Pair(now(), objectFactory.getObject()));
-            } else {
+            }} else {
                 map.put(name, new Pair(now(), objectFactory.getObject()));
             }
-        }
-        return null;
+
+        return map.get(name).getValue();
     }
 
     @Override
