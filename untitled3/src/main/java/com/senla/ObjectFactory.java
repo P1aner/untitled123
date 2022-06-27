@@ -1,5 +1,11 @@
 package com.senla;
 
+import lombok.SneakyThrows;
+
+import java.util.HashMap;
+import java.util.Map;
+
+
 public class ObjectFactory {
     private static ObjectFactory ourInstance = new ObjectFactory();
     private Config config;
@@ -9,13 +15,17 @@ public class ObjectFactory {
     }
 
     private ObjectFactory() {
-
+        config = new JavaConfig("com.senla", new HashMap<>(Map.of(Policeman.class,AngryPoliceman.class)));
     }
 
+    @SneakyThrows
     public <T> T createObject(Class<T> type) {
         Class<? extends T> implClass = type;
         if (type.isInterface()) {
             implClass = config.getImplClass(type);
         }
+            T t = implClass.getDeclaredConstructor().newInstance();
+        //todo
+            return t;
     }
 }
