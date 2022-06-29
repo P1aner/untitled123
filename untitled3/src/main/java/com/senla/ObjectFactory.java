@@ -21,7 +21,7 @@ public class ObjectFactory {
     }
 
     private ObjectFactory() {
-        config = new JavaConfig("com.senla", new HashMap<>(Map.of(Policeman.class,AngryPoliceman.class)));
+        config = new JavaConfig("com.senla", new HashMap<>(Map.of(Policeman.class, AngryPoliceman.class)));
     }
 
     @SneakyThrows
@@ -30,20 +30,26 @@ public class ObjectFactory {
         if (type.isInterface()) {
             implClass = config.getImplClass(type);
         }
-            T t = implClass.getDeclaredConstructor().newInstance();
+        T t = implClass.getDeclaredConstructor().newInstance();
         //todo
-        for(Field field : implClass.getDeclaredFields()){
+        for (Field field : implClass.getDeclaredFields()) {
             InjectProperTy annotation = field.getAnnotation(InjectProperTy.class);
             String path = ClassLoader.getSystemClassLoader().getResource("application.properties").getPath();
 
             Stream<String> lines = new BufferedReader(new FileReader(path)).lines();
-            Map<Object, Object> propertiesMap = lines.map(line -> line.split("=")).collect(toMap(arr ->[0], arr ->[1]));
+            Map<Object, Object> propertiesMap = lines.map(line -> line.split("="))
+                    .collect(toMap(arr -> arr[0], arr -> arr[1]));
 
-            if (annotation != null){
 
-                if (annotation.value().isEmpty()){
-
+            if (annotation != null) {
+                String value;
+                if (annotation.value().isEmpty()) {
+                    value = (String) propertiesMap.get(field.getName());
+                } else {
+                    value = (String) propertiesMap.get(annotation.value());
                 }
+                field.setAccessible(true);
+                field.set(t,value);
             }
         }
         return t;
