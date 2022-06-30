@@ -1,7 +1,7 @@
 package com.senla;
 
 public class RecomendatorImpl implements Recomendator{
-    @InjectProperTy
+    @InjectProperTy("visky")
     private String alcohol;
 
     @Override
