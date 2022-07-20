@@ -1,5 +1,5 @@
 package com.senla;
 
 public interface ObjectCongigurator {
-    void configurer (Object t);
+    void configurer (Object t,ApplictionContext context);
 }
